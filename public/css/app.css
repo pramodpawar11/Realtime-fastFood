@@ -3,7 +3,6 @@ body {
   font-family: "Lato", sans-serif;
   -webkit-font-smoothing: antialiased;
   color: #232323;
-  height: 4000px;
 }
 
 nav li:last-child a {
@@ -37,4 +36,27 @@ section.hero {
   background-color: #FE5F1E;
   border-color: #fff;
   color: #fff;
+}
+
+.cart {
+  background-color: #f8f8f8;
+}
+.cart .amount {
+  color: #FE5F1E;
+}
+.cart .img-cart {
+  color: #232323;
+}
+
+.btn-primary {
+  background-color: #FE5F1E;
+  transition: all 0.3s ease-in-out;
+}
+.btn-primary:hover {
+  background-color: #b23301;
+}
+
+.login-page {
+  background-color: #f8f8f8;
+  min-height: calc(100vh - 100px);
 }
