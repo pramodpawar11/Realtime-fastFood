@@ -1,13 +1,12 @@
-const { error } = require("laravel-mix/src/Log");
 const mongoose = require("mongoose");
-const mongoDbConnection = (URL) => {
-  mongoose.connect(URL);
-  const connection = mongoose.connection;
-  connection.on("connected",()=>{
-    console.log("connected to database");
-  });
-  connection.on("error",(error)=>{
-    console.log("connection fail"+error);
-  })
+
+const mongoDbConnection = async (URL) => {
+  try {
+    await mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true });
+    console.log("Connected to database");
+  } catch (error) {
+    console.error("Connection failed:", error);
+  }
 };
-module.exports = {mongoDbConnection}
+
+module.exports = { mongoDbConnection };
