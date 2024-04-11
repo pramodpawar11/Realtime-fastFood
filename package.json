@@ -3,7 +3,8 @@
     "cjs": "^0.0.11",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
-    "express-ejs-layouts": "^2.5.1"
+    "express-ejs-layouts": "^2.5.1",
+    "mongoose": "^8.3.1"
   },
   "scripts": {
     "dev": "nodemon server.js",
