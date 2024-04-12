@@ -12,4 +12,6 @@ router.get("/login",authController().login)
 
 router.get("/signup",authController().signup);
 
+router.post("/update-cart",cartController().update);
+
 module.exports = router;

@@ -4,7 +4,7 @@ const app = express();
 const ejs = require("ejs");
 const expressLayout = require("express-ejs-layouts");
 const path = require("path");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const webRouter = require("./routers/web");
 const { mongoDbConnection } = require("./connections");
 const session = require("express-session");
@@ -15,19 +15,17 @@ app.use(flash());
 app.use(expressLayout);
 app.use(express.static("public"));
 
-// console.log("Session Secret:", process.env.Session_Secret);
-// console.log("Database URL:", process.env.DataBase_URL);
 
 
 // Setup MongoDB connection and session store
-mongoDbConnection(process.env.DataBase_URL);
+mongoDbConnection("mongodb://127.0.0.1:27017/pizza-database");
 
 app.use(
   session({
     secret: process.env.Session_Secret,
     resave: false,
     store: new MongoStore({
-      mongoUrl: process.env.DataBase_URL,
+      mongoUrl:"mongodb://127.0.0.1:27017/pizza-database",
       collectionName: "session"
     }),
     saveUninitialized: false,
