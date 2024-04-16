@@ -10,12 +10,7 @@ const { mongoDbConnection } = require("./connections");
 const session = require("express-session");
 const flash = require("express-flash");
 const MongoStore = require("connect-mongo");
-
-app.use(flash());
-app.use(expressLayout);
-app.use(express.static("public"));
-
-
+const bodyParser = require("body-parser");
 
 // Setup MongoDB connection and session store
 mongoDbConnection("mongodb://127.0.0.1:27017/pizza-database");
@@ -24,14 +19,24 @@ app.use(
   session({
     secret: process.env.Session_Secret,
     resave: false,
-    store: new MongoStore({
-      mongoUrl:"mongodb://127.0.0.1:27017/pizza-database",
+    store: MongoStore.create({
+      mongoUrl: "mongodb://127.0.0.1:27017/pizza-database",
       collectionName: "session"
     }),
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 * 24 } // Session cookie expiry time
   })
 );
+
+app.use(bodyParser.json());
+app.use(flash());
+app.use(expressLayout);
+app.use(express.static("public"));
+
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/resources/views"));
