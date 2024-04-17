@@ -15,7 +15,7 @@ const passport = require("passport")
 const passportInit = require("./app/config/passport")
 
 // Setup MongoDB connection and session store
-mongoDbConnection("");
+mongoDbConnection("mongodb://127.0.0.1:27017/pizza-database");
 
 passportInit(passport)
 app.use(
@@ -23,7 +23,7 @@ app.use(
     secret: process.env.Session_Secret,
     resave: false,
     store: MongoStore.create({
-      mongoUrl: "",
+      mongoUrl: "mongodb://127.0.0.1:27017/pizza-database",
       collectionName: "session"
     }),
     saveUninitialized: false,
@@ -41,6 +41,7 @@ app.use(express.static("public"));
 
 app.use((req, res, next) => {
   res.locals.session = req.session;
+  res.locals.user = req.user
   next();
 });
 

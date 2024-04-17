@@ -57,6 +57,9 @@
               Sign in
             </button>
           </div>
+          <% if (messages.error) { %>
+            <div class="text-red-500 font-semibold"><%= messages.error %></div>
+          <% } %>
         </form>
         <div class="mt-6">
             <p class="text-center text-sm text-gray-600">

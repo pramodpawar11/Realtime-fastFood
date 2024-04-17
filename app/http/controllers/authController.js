@@ -11,8 +11,8 @@ const authController = ()=>{
         async userLogin(req,res,next){
             passport.authenticate("local",(err,user,info)=>{
                 if(err){
-                    req.flash("erro",info.message)
-                    return next(err)
+                    req.flash("error",info.message)
+                    return next(err) 
                 }
                 if(!user){
                     req.flash("error",info.message)
@@ -46,6 +46,10 @@ const authController = ()=>{
                 password:hashPassword
             });
             return res.redirect("/login");
+        },
+        logout(req,res){
+            req.logout(()=>{});;
+            return res.redirect("/login")
         }
     }
 }
