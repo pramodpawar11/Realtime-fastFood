@@ -9,8 +9,10 @@ router.get("/",homeController().index);
 router.get("/cart",cartController().cart);
 
 router.get("/login",authController().login)
+router.post("/login",authController().userLogin)
 
 router.get("/signup",authController().signup);
+router.post("/signup",authController().userSignup);
 
 router.post("/update-cart",cartController().update);
 

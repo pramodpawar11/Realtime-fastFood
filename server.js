@@ -11,22 +11,28 @@ const session = require("express-session");
 const flash = require("express-flash");
 const MongoStore = require("connect-mongo");
 const bodyParser = require("body-parser");
+const passport = require("passport")
+const passportInit = require("./app/config/passport")
 
 // Setup MongoDB connection and session store
-mongoDbConnection("mongodb://127.0.0.1:27017/pizza-database");
+mongoDbConnection("");
 
+passportInit(passport)
 app.use(
   session({
     secret: process.env.Session_Secret,
     resave: false,
     store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1:27017/pizza-database",
+      mongoUrl: "",
       collectionName: "session"
     }),
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 * 24 } // Session cookie expiry time
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({extended:false}));
 
 app.use(bodyParser.json());
 app.use(flash());
