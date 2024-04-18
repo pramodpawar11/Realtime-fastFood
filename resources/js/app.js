@@ -1,4 +1,6 @@
 const axios = require("axios");
+import { initAdmin } from './admin.js';
+
 const addToCartButtons = document.querySelectorAll(".add-to-cart");
 const cartCount = document.querySelector("#cart-count");
 import Noty from 'noty';
@@ -26,3 +28,13 @@ addToCartButtons.forEach((btn) => {
         updatePizza(pizza);
     });
 });
+
+const alertMsg = document.getElementById("success-alert");
+if(alertMsg){
+    setTimeout(()=>{
+        alertMsg.remove();
+    },2000);
+}
+
+initAdmin()
+

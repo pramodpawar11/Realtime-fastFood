@@ -4,6 +4,9 @@ const bcrypt = require('bcrypt');
 
 
 const authController = ()=>{
+    const _getRedirectUrl = (req)=>{
+        return req.user.roel==="admin" ? "/admin/orders" : "/customer/orders"
+    }
     return {
         login:function(req,res){
             res.render("auth/login");
@@ -24,7 +27,7 @@ const authController = ()=>{
                         req.flash("error",info.message)
                         return next(err)
                     }
-                    return res.redirect("/")
+                    return res.redirect(_getRedirectUrl(req))
                 })
             })(req,res,next)
         },
