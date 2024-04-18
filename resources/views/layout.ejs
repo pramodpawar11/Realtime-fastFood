@@ -1,50 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/css/app.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <title>Document</title>
-  </head>
-  <body>
-    <nav class="container mx-auto flex items-center justify-between py-4">
-      <div>
-        <img src="/img/logo.png" />
-      </div>
-      <div>
-        <ul class="flex items-center">
-          <li class="ml-6"><a href="#">Menu</a></li>
-          <li class="ml-6"><a href="#">Offer</a></li>
-          <% if (user) { %>
-           
-            <li class="ml-6">
-              <form id="logout" action="/logout" method="post">
-                <a onclick="document.getElementById('logout').submit()" href="#">Log-out</a>
-              </form>
-            </li>
-          <% } else {%>
-          <li class="ml-6"><a href="/signup">Register</a></li>
-          <li class="ml-6"><a href="/login">Login</a></li>
-          <%}%>
-          <li class="ml-6">
-            <a href="/cart" class="inline-block flex items-center px-4 py-2 rounded-full"
-              >
-              <img src="/img/cart.png"/>
-
-              <sup id="cart-count" class="text-white pl-2"><%= session.cart ? session.cart.totalQty : '' %></sup>
-            </a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <style>
+    .hamburger {
+      display: none; /* Initially hide the hamburger menu */
+    }
+    .hamburger .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: all 0.3s ease-in-out;
+      background-color: black;
+    }
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block; /* Show the hamburger menu on smaller screens */
+      }
+      .hamburger.active .bar:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+      .nav-menu {
+        position: fixed;
+        left: 100%;
+        top: 70px;
+        gap: 0;
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s; /* Corrected typo: "0.3%" to "0.3s" */
+      }
+      .nav-items {
+        margin: 16px 0;
+      }
+      .nav-menu.active {
+        left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="sm:px-16 px-8 mx-auto flex items-center justify-between py-4">
+    <div>
+      <img src="/img/logo.png" />
+    </div>
+    <div>
+      <ul class="nav-menu flex items-center nav-links">
+        <li class="ml-6 nav-items"><a href="/">Menu</a></li>
+        <li class="ml-6 nav-items"><a href="#">Offer</a></li>
+        <% if (user) { %>
+          <li class="ml-6 nav-items">
+            <form id="logout" action="/logout" method="post">
+              <a onclick="document.getElementById('logout').submit()" href="#">Log-out</a>
+            </form>
           </li>
-        </ul>
+        <% } else { %>
+          <li class="ml-6 nav-items"><a href="/signup">Register</a></li>
+          <li class="ml-6 nav-items"><a href="/login">Login</a></li>
+        <% } %>
+        <li class="ml-6 nav-items">
+          <a href="/cart" class=" flex items-center px-4 py-2 rounded-full">
+            <img src="/img/cart.png" />
+            <sup id="cart-count" class="text-white pl-2"><%= session.cart ? session.cart.totalQty : '' %></sup>
+          </a>
+        </li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
       </div>
-    </nav>
-   <%- body %>
+    </div>
+  </nav>
+  <%- body %>
     <script src="/js/app.js"></script>
   </body>
 </html>

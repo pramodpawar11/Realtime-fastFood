@@ -11,28 +11,28 @@ const session = require("express-session");
 const flash = require("express-flash");
 const MongoStore = require("connect-mongo");
 const bodyParser = require("body-parser");
-const passport = require("passport")
-const passportInit = require("./app/config/passport")
+const passport = require("passport");
+const passportInit = require("./app/config/passport");
 
 // Setup MongoDB connection and session store
 mongoDbConnection("mongodb://127.0.0.1:27017/pizza-database");
 
-passportInit(passport)
+passportInit(passport);
 app.use(
   session({
     secret: process.env.Session_Secret,
     resave: false,
     store: MongoStore.create({
       mongoUrl: "mongodb://127.0.0.1:27017/pizza-database",
-      collectionName: "session"
+      collectionName: "session",
     }),
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 } // Session cookie expiry time
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // Session cookie expiry time
   })
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 app.use(flash());
@@ -41,7 +41,7 @@ app.use(express.static("public"));
 
 app.use((req, res, next) => {
   res.locals.session = req.session;
-  res.locals.user = req.user
+  res.locals.user = req.user;
   next();
 });
 

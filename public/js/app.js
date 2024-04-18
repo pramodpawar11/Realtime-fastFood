@@ -72,6 +72,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/dist/browser/
 var addToCartButtons = document.querySelectorAll(".add-to-cart");
 var cartCount = document.querySelector("#cart-count");
 
+var hamburger = document.querySelector(".hamburger");
+var navMenu = document.querySelector(".nav-menu");
+hamburger.addEventListener("click", function () {
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+});
 var updatePizza = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(pizza) {
     var res;

@@ -5,6 +5,18 @@ const addToCartButtons = document.querySelectorAll(".add-to-cart");
 const cartCount = document.querySelector("#cart-count");
 import Noty from 'noty';
 
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+const navItems = document.querySelector("nav-items")
+
+hamburger.addEventListener("click",()=>{
+    hamburger.classList.toggle("active")
+    navMenu.classList.toggle("active")
+})
+
+
+
+
 
 const updatePizza = async (pizza) => {
     try {

@@ -1,3 +1,6 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 /* main.css */
 
 @import "./variable.scss";
@@ -69,4 +72,11 @@ section.hero{
 }
 a.link{
     color:$primary;
+}
+
+
+@media(max-width:1440px){
+    .containerr{
+        max-width: 90%;
+    }
 }
