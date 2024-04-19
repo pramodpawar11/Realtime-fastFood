@@ -1,21 +1,31 @@
 <section class="hero py-16">
-  <div class="sm:px-16 px-8 mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
+  <div
+    class="sm:px-16 px-8 mx-auto flex flex-col-reverse md:flex-row items-center justify-between"
+  >
     <div class="w-full md:w-1/2 text-center md:text-left md:pr-16">
       <h3 class="text-lg"><em>Are you hungry?</em></h3>
       <h1 class="text-3xl md:text-6xl font-bold">Don't wait!</h1>
-      <button class="btn-primary text-white py-2 px-6 rounded-full mt-6">Order now</button>
+      <button class="btn-primary text-white py-2 px-6 rounded-full mt-6">
+        Order now
+      </button>
     </div>
     <div class="w-full md:w-1/2 mt-8 md:mt-0">
-      <img class="mx-auto md:mx-0 h-auto md:h-full" src="/img/hero-pizza.png" alt="Pizza" />
+      <img
+        class="mx-auto md:mx-0 h-auto md:h-full"
+        src="/img/hero-pizza.png"
+        alt="Pizza"
+      />
     </div>
   </div>
 </section>
 
 <section class="menu container mx-auto py-8 sm:px-16 px-8">
-  <h2 class="font-bold text-lg text-center">All Pizzas</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-12 gap-y-16 row-gap-16">
+  <h2 class="font-bold text-lg text-center py-5">All Pizzas</h2>
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-12 gap-y-16 row-gap-16"
+  >
     <% pizzas.forEach(pizza => { %>
-    <div class="w-full sm:w-auto">
+    <div class="w-full sm:w-auto shadow-lg p-10">
       <img class=" w-40 md:h-auto mb-4 mx-auto" src="/img/<%= pizza.image %>" alt="<%= pizza.name %>" />
       <div class="text-center">
         <h2 class="text-lg mb-4"><%= pizza.name %></h2>
@@ -34,3 +44,5 @@
     <% }) %>
   </div>
 </section>
+
+     

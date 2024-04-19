@@ -16,8 +16,6 @@ hamburger.addEventListener("click",()=>{
 
 
 
-
-
 const updatePizza = async (pizza) => {
     try {
         const res = await axios.post("/update-cart", pizza);
