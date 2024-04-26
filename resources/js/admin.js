@@ -15,6 +15,7 @@ import Noty from 'noty'
     })
     .then((res) => {
       orders = res.data;
+      console.log(orders)
       console.log(orders);
       markup = generateMarkup(orders);
       orderTableBody.innerHTML = markup;

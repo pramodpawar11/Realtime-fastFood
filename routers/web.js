@@ -25,6 +25,6 @@ router.post("/logout", authController().logout);
 router.post("/orders", auth, orderController().store);
 router.get("/customer/orders", auth, orderController().customerOrders);
 
-router.get("/admin/orders", admin, adminOrderController().index);
+router.get("/admin/orders",admin, adminOrderController().index);
 
 module.exports = router;

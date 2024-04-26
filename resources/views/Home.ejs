@@ -20,12 +20,12 @@
 </section>
 
 <section class="menu container mx-auto py-8 sm:px-16 px-8">
-  <h2 class="font-bold text-lg text-center py-5">All Pizzas</h2>
+  <h2 class="font-bold text-lg text-center py-5">All Products</h2>
   <div
     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-12 gap-y-16 row-gap-16"
   >
     <% pizzas.forEach(pizza => { %>
-    <div class="w-full sm:w-auto shadow-lg p-10">
+    <div class="w-full sm:w-auto shadow-lg p-10 ">
       <img class=" w-40 md:h-auto mb-4 mx-auto" src="/img/<%= pizza.image %>" alt="<%= pizza.name %>" />
       <div class="text-center">
         <h2 class="text-lg mb-4"><%= pizza.name %></h2>

@@ -31,6 +31,7 @@ function initAdmin() {
   }).then(function (res) {
     orders = res.data;
     console.log(orders);
+    console.log(orders);
     markup = generateMarkup(orders);
     orderTableBody.innerHTML = markup;
   })["catch"](function (err) {
@@ -74,6 +75,7 @@ var cartCount = document.querySelector("#cart-count");
 
 var hamburger = document.querySelector(".hamburger");
 var navMenu = document.querySelector(".nav-menu");
+var navItems = document.querySelector("nav-items");
 hamburger.addEventListener("click", function () {
   hamburger.classList.toggle("active");
   navMenu.classList.toggle("active");
